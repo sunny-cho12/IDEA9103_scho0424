@@ -1,6 +1,11 @@
+// Add individual variables to control the movements
+let bullAnimation = true;
+let backAnimation = true;
+
 // =====================================
 // 1. Animation Parameters
 // =====================================
+
 
 function assignAnimationParams() {
   for (let seg of bgSegments) {
@@ -29,7 +34,11 @@ function drawBgPattern() {
     let x = startX + (seg.col + 0.5) * cellSize;
     let y = startY + (seg.row + 0.5) * cellSize;
 
-    let pulse = sin(frameCount * seg.rate + seg.phase) * seg.amp;
+    // If variable backAnimation is active, the background changes.
+    let pulse = 0;
+    if (backAnimation) {
+      pulse = sin(frameCount * seg.rate + seg.phase) * seg.amp;
+    }
 
     // base size plus the pulse
     let w = cellSize * (shapeSize + pulse);
@@ -67,7 +76,11 @@ function drawBullPattern() {
 
     let cellSize = min(cellW, cellH);
 
-    let pulse = sin(frameCount * seg.rate + seg.phase) * seg.amp;
+    // If variable bullAnimation is active, the background changes.
+    let pulse = 0;
+    if (bullAnimation) {
+      pulse = sin(frameCount * seg.rate + seg.phase) * seg.amp;
+    }
 
     let w = cellSize * (shapeSize + pulse);
     let h = cellSize * (shapeSize + pulse);
@@ -91,4 +104,19 @@ function drawAll() {
   background(backColor); // clear canvas
   drawBgPattern();       // draw animated background
   drawBullPattern();     // draw animated bull foreground
+}
+
+
+// =====================================
+// 5. USER INPUT INTERACTION WITH KEYBOARD
+// =====================================
+// Update backAnimation and bullAnimation if specific key is pressed.
+function keyPressed() {
+   if (key === 'w') {
+    backAnimation = !backAnimation;
+  }
+  
+  if (key === 'a') {
+    bullAnimation = !bullAnimation;
+  }
 }
