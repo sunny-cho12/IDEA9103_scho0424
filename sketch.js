@@ -9,10 +9,10 @@ let bgImg, bullImg;
 let bgSegments = [];
 let bullSegments = [];
 
-let gridSize = 15; // how many grid cells across and down
-let shapeSize = 1.2; // size of each shape (multiplier) 
-let bullGridSize = 30; // how many grid cells across and down
-let bullShapeSize = 1.5; // size of each shape (multiplier) 
+let gridSize = 20; // how many grid cells across and down of background
+let shapeSize = 1.2; // size of each shape (multiplier) of background
+let bullGridSize = 25; // how many grid cells across and down of bull (foreground)
+let bullShapeSize = 1.5; // size of each shape (multiplier) of the bull (foreground)
 
 // =====================================
 // 2. PRELOAD - load images before setup
@@ -125,7 +125,7 @@ function draw() {
 
 
 // ===============================================================
-// 9. RESPONSIVENESS - redraw everything when window size changes
+// 7. RESPONSIVENESS - redraw everything when window size changes
 // ===============================================================
 
 function windowResized() {

@@ -2,7 +2,7 @@
 let bullAnimation = true;
 let backAnimation = true;
 
-// Add viariables to set the background colour
+// Add viariables to set the grid colour
 let gridColour;
 
 // =====================================
@@ -12,7 +12,7 @@ let gridColour;
 
 function assignAnimationParams() {
   if (!gridColour) {
-    gridColour = color(250);
+    gridColour = color(250); // set the intial Colour of grid as 250 
   }
 
   for (let seg of bgSegments) {
@@ -34,14 +34,14 @@ function drawBgPattern() {
   noStroke(); // no outline around shapes
   let size = min(width, height); // keep square aspect ratio
   let startX = (width - size) / 2; // center horizontally
-  let startY = 0; // center vertically
+  let startY = 0; // start from under the explanation text
 
   for (let seg of bgSegments) {
     let cellSize = size / gridSize;
     let x = startX + (seg.col + 0.5) * cellSize;
     let y = startY + (seg.row + 0.5) * cellSize;
 
-    // If variable backAnimation is active, the background changes.
+    // If variable backAnimation is active, the background animation works.
     let pulse = 0;
     if (backAnimation) {
       pulse = sin(frameCount * seg.rate + seg.phase) * seg.amp;
@@ -68,12 +68,14 @@ function drawBgPattern() {
 
 function drawBullPattern() {
   noStroke();
+  // Change the start position using size 
+  let size = min(width, height); 
+  let scale = (size / bullImg.width) * 0.8;
 
-  let scale = min(width / bullImg.width, height / bullImg.height) * 0.8;
   let patternWidth = bullImg.width * scale;
   let patternHeight = bullImg.height * scale;
   let startX = (width - patternWidth) / 2;
-  let startY = (height - patternHeight) / 2;
+  let startY = (size - patternHeight) / 2;
 
   for (let seg of bullSegments) {
     let cellW = patternWidth / bullGridSize;
@@ -83,7 +85,7 @@ function drawBullPattern() {
 
     let cellSize = min(cellW, cellH);
 
-    // If variable bullAnimation is active, the background changes.
+    // If variable bullAnimation is active, the foreground animation works.
     let pulse = 0;
     if (bullAnimation) {
       pulse = sin(frameCount * seg.rate + seg.phase) * seg.amp;
@@ -118,7 +120,7 @@ function drawAll() {
 // 5. USER INPUT INTERACTION WITH KEYBOARD AND MOUSE
 // =====================================
 
-// Update backAnimation and bullAnimation if specific key is pressed.
+// Update backAnimation and bullAnimation if specific key (w, a) is pressed.
 
 function keyPressed() {
    if (key === 'w') {

@@ -7,6 +7,104 @@ canvas {
   display: block;
 }
 
-h1 {
+/* Check List */
+
+.list
+{
   text-align: center;
+  padding: 10px 15px 10px 20px;
+  position: relative;
+  background: #fff4cf;
+  text-align: left;       
+  position: relative;
+  border-radius: 8px; 
+}
+
+/* Hide the checkbox */
+.list input[type="checkbox"] {
+    display: none;
+}
+
+/* Text style */ 
+
+.list h1
+{
+    color: #4b493a;
+    font-size: 16px;
+    padding: 10px 0;
+    margin-left: 10px;
+    text-align: center;
+    display: inline-block;
+    border-bottom: 4px solid #4b493a;
+}
+
+.list label {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;   
+    align-items: center;      
+    margin: 8px 0;
+    color: #4b493a;
+    font-size: 16px;
+}
+
+/* Custom checkbox */
+
+.list i
+{
+    position: relative;
+    top: 0px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 4px;
+    border: 2px solid #4b493a;
+}
+
+/* Style changes when it is checked */
+.list input[type="checkbox"]:checked ~ i
+{
+    top: 1px;
+    border-top: none;
+    border-right: none;
+    height: 10px;
+    width: 12px;
+    transform: rotate(-45deg);
+}
+.list span
+{
+    position: relative;
+    left: 0px;
+    transition: 0.5s;
+    font-size: 12px;
+}
+
+/* animation line animation*/
+.list span:before
+{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #4b493a;
+    transform: translateY(-50%) scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s;
+}
+
+/* change the colour when checkbox is checked */
+.list input[type="checkbox"]:checked ~ span
+{
+    color: #90876f;
+}
+
+/* line animation when checkbox is clicked */ 
+.list input[type="checkbox"]:checked ~ span:before
+{
+    transform: translateY(-50%) scaleX(1);
+    transform-origin: left;
+    transition: transform 0.5s;
+    transition-delay: 0.5s;
 }
