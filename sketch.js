@@ -9,6 +9,7 @@ let bgImg, bullImg;
 let bgSegments = [];
 let bullSegments = [];
 
+// Set different parameters for the background and the bull
 let gridSize = 20; // how many grid cells across and down of background
 let shapeSize = 1.2; // size of each shape (multiplier) of background
 let bullGridSize = 25; // how many grid cells across and down of bull (foreground)

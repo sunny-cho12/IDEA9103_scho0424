@@ -1,4 +1,8 @@
-// Add individual variables to control the movements
+// =====================================
+// Individual Variables
+// =====================================
+
+// Add variables to control the each movements
 let bullAnimation = true;
 let backAnimation = true;
 
@@ -11,8 +15,11 @@ let gridColour;
 
 
 function assignAnimationParams() {
+  
+  // Individual code
+  // If no colour has been set yet, set the intial Colour of grid as 250 
   if (!gridColour) {
-    gridColour = color(250); // set the intial Colour of grid as 250 
+    gridColour = color(250); 
   }
 
   for (let seg of bgSegments) {
@@ -41,7 +48,7 @@ function drawBgPattern() {
     let x = startX + (seg.col + 0.5) * cellSize;
     let y = startY + (seg.row + 0.5) * cellSize;
 
-    // If variable backAnimation is active, the background animation works.
+    // If backAnimation is active, apply the animation to the background
     let pulse = 0;
     if (backAnimation) {
       pulse = sin(frameCount * seg.rate + seg.phase) * seg.amp;
@@ -68,7 +75,9 @@ function drawBgPattern() {
 
 function drawBullPattern() {
   noStroke();
-  // Change the start position using size 
+
+  // Adjust Position of bull
+  // Use the smaller dimension of the screen to keep the bull correctly scaled
   let size = min(width, height); 
   let scale = (size / bullImg.width) * 0.8;
 
@@ -85,7 +94,7 @@ function drawBullPattern() {
 
     let cellSize = min(cellW, cellH);
 
-    // If variable bullAnimation is active, the foreground animation works.
+    // If backAnimation is active, apply the animation to the bull
     let pulse = 0;
     if (bullAnimation) {
       pulse = sin(frameCount * seg.rate + seg.phase) * seg.amp;
@@ -124,11 +133,11 @@ function drawAll() {
 
 function keyPressed() {
    if (key === 'w') {
-    backAnimation = !backAnimation;
+    backAnimation = !backAnimation; // Switches the background movement between active and paused
   }
   
   if (key === 'a') {
-    bullAnimation = !bullAnimation;
+    bullAnimation = !bullAnimation; // Switches the bull movement between active and paused
   }
 }
 
