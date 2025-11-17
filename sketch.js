@@ -37,10 +37,11 @@ function setup() {
   createBgSegments();
   createBullSegments();
   
+  assignAnimationParams();
+
   // draw once when starting
   drawAll();
 
-  assignAnimationParams();
 }
 
 // ======================================================================
@@ -121,85 +122,6 @@ function draw() {
   drawAll();
 }
 
-function drawAll() {
-  background(backColor); // clear canvas each frame
-  drawBgPattern(); // draw geometric background
-  drawBullPattern(); // draw the bull foreground layer on top
-}
-
-// =============================
-// 7. DRAW - background pattern
-// =============================
-
-function drawBgPattern() {
-  noStroke(); // to make sure all shapes have no outline
-  let size = min(width, height); // keep square aspect ratio = no stretching
-  let startX = (width - size) / 2; // center horizontally
-  let startY = (height - size) / 2; // center vertically
-
-  // loop for each background segment
-  for (let i = 0; i < bgSegments.length; i++) {
-    let seg = bgSegments[i];
-    
-    let cellSize = size / gridSize;
-    let x = startX + (seg.col + 0.5) * cellSize;
-    let y = startY + (seg.row + 0.5) * cellSize;
-    
-    // shape size
-    let w = cellSize * shapeSize;
-    let h = cellSize * shapeSize;
-    
-    fill(seg.color); // fill colour grabbed from image palette
-    
-    // randomiser to pick between circle or suare
-    if (seg.shape == 0) {
-      ellipse(x, y, w, h);
-    } else {
-      rectMode(CENTER);
-      rect(x, y, w, h);
-    }
-  }
-}
-
-// =======================
-// 8. DRAW - bull pattern
-// =======================
-
-function drawBullPattern() {
-  noStroke();
-
-  // scales the bull image to fit the canvas with no stretch
-  let scale = min(width / bullImg.width, height / bullImg.height) * 0.8;
-  let patternWidth = bullImg.width * scale;
-  let patternHeight = bullImg.height * scale;
-  let startX = (width - patternWidth) / 2;
-  let startY = (height - patternHeight) / 2;
-  
-  // loops bull segments
-  for (let i = 0; i < bullSegments.length; i++) {
-    let seg = bullSegments[i];
-    
-    // scaled pattern calculated from each cell's position
-    let cellW = patternWidth / gridSize;
-    let cellH = patternHeight / gridSize;
-    let x = startX + (seg.col + 0.5) * cellW;
-    let y = startY + (seg.row + 0.5) * cellH;
-    
-    // shape size
-    let cellSize = min(cellW, cellH);
-    let w = cellSize * shapeSize;
-    let h = cellSize * shapeSize;
- 
-    fill(seg.color);
-  
-    if (seg.shape == 0) {
-      ellipse(x, y, w, h);
-    } else {
-      rectMode(CENTER);
-      rect(x, y, w, h);
-    }
-  }
-}
 
 // ===============================================================
 // 9. RESPONSIVENESS - redraw everything when window size changes
@@ -212,8 +134,9 @@ function windowResized() {
   createBgSegments();
   createBullSegments();
   
+  assignAnimationParams();
+
   // redraw all layers
   drawAll();
 
-  assignAnimationParams();
 }

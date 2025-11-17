@@ -2,12 +2,19 @@
 let bullAnimation = true;
 let backAnimation = true;
 
+// Add viariables to set the background colour
+let gridColour;
+
 // =====================================
 // 1. Animation Parameters
 // =====================================
 
 
 function assignAnimationParams() {
+  if (!gridColour) {
+    gridColour = color(250);
+  }
+
   for (let seg of bgSegments) {
     seg.rate = random(0.01, 0.03);   // rate
     seg.amp = random(0.2, 0.5);      // amplitude/how big the change is
@@ -101,16 +108,18 @@ function drawBullPattern() {
 // =====================================
 
 function drawAll() {
-  background(backColor); // clear canvas
+  background(gridColour); // change the background colour
   drawBgPattern();       // draw animated background
   drawBullPattern();     // draw animated bull foreground
 }
 
 
 // =====================================
-// 5. USER INPUT INTERACTION WITH KEYBOARD
+// 5. USER INPUT INTERACTION WITH KEYBOARD AND MOUSE
 // =====================================
+
 // Update backAnimation and bullAnimation if specific key is pressed.
+
 function keyPressed() {
    if (key === 'w') {
     backAnimation = !backAnimation;
@@ -120,3 +129,10 @@ function keyPressed() {
     bullAnimation = !bullAnimation;
   }
 }
+
+// Inspired by Mona Lisa Part 4 example from week 7 class 
+// Get the colour of a part of an image
+// If mouse is clicked specific grid, the background colour changes
+function mousePressed() {
+  gridColour = get(mouseX, mouseY);
+} 
