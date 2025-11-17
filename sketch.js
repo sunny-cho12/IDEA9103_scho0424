@@ -11,6 +11,8 @@ let bullSegments = [];
 
 let gridSize = 15; // how many grid cells across and down
 let shapeSize = 1.2; // size of each shape (multiplier) 
+let bullGridSize = 30; // how many grid cells across and down
+let bullShapeSize = 1.5; // size of each shape (multiplier) 
 
 // =====================================
 // 2. PRELOAD - load images before setup
@@ -86,11 +88,11 @@ function createBullSegments() {
   bullSegments = [];
 
   // each cell's width over height in pixels of the image
-  let segmentWidth = bullImg.width / gridSize;
-  let segmentHeight = bullImg.height / gridSize;
+  let segmentWidth = bullImg.width / bullGridSize;
+  let segmentHeight = bullImg.height / bullGridSize;
   
-  for (let row = 0; row < gridSize; row++) {
-    for (let col = 0; col < gridSize; col++) {
+  for (let row = 0; row < bullGridSize; row++) {
+    for (let col = 0; col < bullGridSize; col++) {
       
       // find the pixel roughly in the middle of each grid cell
       let x = col * segmentWidth + segmentWidth / 2;

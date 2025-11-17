@@ -34,7 +34,7 @@ function drawBgPattern() {
   noStroke(); // no outline around shapes
   let size = min(width, height); // keep square aspect ratio
   let startX = (width - size) / 2; // center horizontally
-  let startY = (height - size) / 2; // center vertically
+  let startY = 0; // center vertically
 
   for (let seg of bgSegments) {
     let cellSize = size / gridSize;
@@ -76,8 +76,8 @@ function drawBullPattern() {
   let startY = (height - patternHeight) / 2;
 
   for (let seg of bullSegments) {
-    let cellW = patternWidth / gridSize;
-    let cellH = patternHeight / gridSize;
+    let cellW = patternWidth / bullGridSize;
+    let cellH = patternHeight / bullGridSize;
     let x = startX + (seg.col + 0.5) * cellW;
     let y = startY + (seg.row + 0.5) * cellH;
 
@@ -89,8 +89,8 @@ function drawBullPattern() {
       pulse = sin(frameCount * seg.rate + seg.phase) * seg.amp;
     }
 
-    let w = cellSize * (shapeSize + pulse);
-    let h = cellSize * (shapeSize + pulse);
+    let w = cellSize * (bullShapeSize + pulse);
+    let h = cellSize * (bullShapeSize + pulse);
 
     fill(seg.color);
 
